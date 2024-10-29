@@ -1,0 +1,43 @@
+<div class="container">
+    <h1 class="page-title">orderGift Management</h1>
+  
+    <div class="gift-list">
+      <p-table [value]="orderGiftList" [rows]="6" [paginator]="true" [(selection)]="selectedIndex" [rowHover]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+          <h5 class="table-caption">Gift List</h5>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="OrderGiftId">OrderGiftId</th>
+            <th pSortableColumn="OrderGiftDate">OrderGiftDate</th>
+            <th pSortableColumn="giftImg">Image</th>
+            <th pSortableColumn="donorId">GiftId</th>
+            <th pSortableColumn="TicketPrice">TicketPrice</th>
+            <th pSortableColumn="giftImg">UserId</th>
+            <th pSortableColumn="giftImg">EmailUser</th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-orderGift let-rowIndex="rowIndex">
+          <tr [class.selected]="selectedIndex === rowIndex" (click)="selectedIndex=rowIndex">
+            <td>{{orderGift.orderGiftId}}</td>
+            <td>{{orderGift.orderGiftDate| date}}</td>
+           <td><img class="gift-image" [src]='"assets/Images/"+orderGift.gift.giftImg' [alt]="orderGift.gift.giftName" />
+              </td>
+            <td>{{orderGift.gift.giftId}}</td>
+            <td>{{orderGift.gift.ticketPrice}}</td>
+            <td>{{orderGift.user.userId}}</td>
+            <td>{{orderGift.user.email}}</td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+          <div class="summary-text">
+            Total {{orderGiftList ? orderGiftList.length : 0}} items in the list.
+          </div>
+        </ng-template>
+      </p-table>
+  
+    </div>
+  </div>
+  

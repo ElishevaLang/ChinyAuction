@@ -1,0 +1,56 @@
+<h1 class="page-title">Register</h1>
+<p-toolbar>
+  <ng-template  pTemplate="left">
+<p-button  label="Sign In" severity="danger"[text]="true" [raised]="false"  icon="pi pi-user"(onClick)="login() "></p-button>
+
+</ng-template>
+</p-toolbar>
+<div class="my-css"><form [formGroup]="frmUserRegister">
+  <p class="bold">All fields are required</p>
+<div class="form-group row">
+  <!-- <div class="control-label col col-3"><label>כתובת מייל:</label></div> -->
+  <div class="control-label col col-4">
+    <span class="p-input-icon-right">
+      <i class="pi pi-envelope"></i>
+      <input  type="text" class="form-control" formControlName="emailRegister" [(ngModel)]="userRegister.email" placeholder="Email"
+          [ngClass]="{'has-error':!frmUserRegister.controls['emailRegister'].valid && frmUserRegister.controls['emailRegister'].touched}" />
+          <div id="valid" *ngIf="frmUserRegister.controls['emailRegister'].invalid&& frmUserRegister.controls['emailRegister'].touched">Invalid Mail format (aaa@gmail.com).</div>
+    </span>
+  </div>
+
+  <br>
+  <br>
+</div>
+<br>
+
+<div class="form-group row">
+  <!-- <div class="control-label col col-3"><label>סיסמא:</label></div> -->
+  <div class="control-label col col-4">
+      <p-password type="text"  formControlName="passwordRegister" [(ngModel)]="userRegister.password" placeholder="Password"
+          [ngClass]="{'has-error':!frmUserRegister.controls['passwordRegister'].valid && frmUserRegister.controls['passwordRegister'].touched}" [feedback]="true" [toggleMask]="true"/>
+          <div id="valid" *ngIf="frmUserRegister.controls['passwordRegister'].invalid&& frmUserRegister.controls['passwordRegister'].touched">Password must contain at least two uppercase and two lowercase letters and numbers.</div>
+  </div>
+</div>
+<br>
+<div class="form-group row">
+    <!-- <div class="control-label col col-3"><label>סיסמא:</label></div> -->
+    <div class="control-label col col-4">
+        <input type="text" class="form-control" formControlName="firstNameRegister" [(ngModel)]="userRegister.firstName" placeholder="FirstName"
+            [ngClass]="{'has-error':!frmUserRegister.controls['firstNameRegister'].valid && frmUserRegister.controls['firstNameRegister'].touched}" />
+    </div>
+  </div>
+  <br>
+  <div class="form-group row">
+    <!-- <div class="control-label col col-3"><label>סיסמא:</label></div> -->
+    <div class="control-label col col-4">
+        <input type="text" class="form-control" formControlName="lastNameRegister" [(ngModel)]="userRegister.lastName" placeholder="LastName"
+            [ngClass]="{'has-error':!frmUserRegister.controls['lastNameRegister'].valid && frmUserRegister.controls['lastNameRegister'].touched}" />
+    </div>
+  </div>
+  <br>
+<!-- <button class="btn" (click)="register()" [disabled]="frmUserRegister.invalid">Enter</button> -->
+<p-button class="center" label="Enter" [disabled]="frmUserRegister.invalid" severity="danger"[text]="true" [raised]="false"  icon="pi pi-user"(onClick)="register()"></p-button>
+
+
+</form>
+</div>

@@ -1,0 +1,22 @@
+<div class="container">
+    <h2 class="page-title">Your Shopping Cart</h2>
+    <div class="cart-items">
+      <div *ngFor="let item of cartListQ" class="cart-item">
+        <div class="item-image">
+          <img [src]='"assets/Images/"+item.gift.giftImg' alt="Gift Image" />
+        </div>
+        <div class="item-details">
+          <h3 class="item-name">{{ item.gift.giftName }}</h3>
+          <p class="item-price">Price: ₪{{ item.gift.ticketPrice }}</p>
+          <p class="item-price">Quantity: {{ item.quantity}}</p>
+          <button pButton pRipple icon="pi pi-trash" class="delete-button" (click)="deleteCart(item)"></button>
+        </div>
+      </div>
+    </div>
+    <div class="cart-total">
+      <div class="total-label">Total:</div>
+      <div class="total-amount">₪{{ sum }}</div>
+      <button  [disabled]="sum==0"    class="pay-button" (click)="pay()">Proceed to Checkout</button>
+    </div>
+  </div>
+  

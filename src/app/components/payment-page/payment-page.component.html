@@ -1,0 +1,72 @@
+<p-dialog  *ngIf="!finish" dir="ltr" [(visible)]="isDialog"  styleClass="p-fluid" [style]="{width: '600px'}" header="Payment  Shopping Cart (₪{{ sumParameter }})" [modal]="true">
+  <ng-template pTemplate="content" [formGroup]="frmPayment">
+  <div class="my-css">
+  <div><span [style]="{fontWeight:'bold'}">Card Deatails</span></div>
+  <div  class="p-inputgroup">
+    <span class="p-inputgroup-addon">
+        <i class="pi pi-home"></i>
+    </span>
+    <input formControlName="address" id="address" pInputText placeholder="Address" />
+</div>
+<br>
+<div  class="p-inputgroup">
+    <span class="p-inputgroup-addon">
+        <i class="pi pi-credit-card"></i>
+    </span>
+    <input  type="text" class="form-control" formControlName="creditCardNumber" pInputText [(ngModel)]="payment.creditCardNumber" placeholder=" creditCardNumber"
+    [ngClass]="{'has-error':!frmPayment.controls['creditCardNumber'].valid && frmPayment.controls['creditCardNumber'].touched}" />
+    <br>
+  </div>
+    <div id="valid" *ngIf="frmPayment.controls['creditCardNumber'].invalid&& frmPayment.controls['creditCardNumber'].touched">Invalid card number format (should be 16 digits).</div>    
+
+<br>
+<div  class="p-inputgroup">
+    <span class="p-inputgroup-addon">
+        <i class="pi pi-ellipsis-h"></i>
+    </span>
+    <input type="text" class="form-control" formControlName="cvv" pInputText [(ngModel)]="payment.cvv" placeholder="cvv"
+    [ngClass]="{'has-error':!frmPayment.controls['cvv'].valid && frmPayment.controls['cvv'].touched}" />
+</div>
+    <div id="valid" *ngIf="frmPayment.controls['cvv'].invalid && frmPayment.controls['cvv'].touched">Invalid CVC number format (should be 3 digits).</div>
+<br>
+<div class="p-inputgroup">
+  <span class="p-inputgroup-addon">
+    <i class="pi pi-calendar"></i>
+  </span>
+  <label for="icondisplay" class="font-bold block mb-2"> </label>
+  <p-calendar [(ngModel)]="payment.passwordReexpiryDategister" [view]="'month'" [dateFormat]="'mm/yy'" formControlName="passwordReexpiryDategister"   placeholder="ReexpiryDate"
+  [ngClass]="{'has-error':!frmPayment.controls['passwordReexpiryDategister'].valid && frmPayment.controls['passwordReexpiryDategister'].touched}"></p-calendar>
+
+</div>
+<div id="valid" *ngIf="frmPayment.controls['passwordReexpiryDategister'].invalid && frmPayment.controls['passwordReexpiryDategister'].touched">ReexpiryDate is required.</div>
+
+<br>
+<div  class="p-inputgroup">
+    <span class="p-inputgroup-addon">
+        <i class="pi pi-user-edit"></i>
+    </span>
+    <input formControlName="identity" pInputText placeholder="Owner's Card Identity" />
+
+</div>
+</div>
+
+
+  <p-button [disabled]="frmPayment.invalid" severity="warning" label="Payment" [text]="true" [raised]="true"  icon="pi pi-check" (click)="pay()"></p-button>
+  <p-button  severity="warning" label="Cancel" [text]="true" [raised]="true"  icon="pi pi-times" (click)="closeDaialog()"></p-button>
+</ng-template>
+</p-dialog>
+
+<p-dialog   dir="ltr" [(visible)]="finish" styleClass="p-fluid" [style]="{width: '450px'}" header="Payment" [modal]="true">
+  <div *ngIf="!orderFinish">
+    <h3>Custom</h3>
+    <p-progressSpinner [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>   <span>Cheching your detailes, please wait!</span>
+  </div>
+   <div *ngIf="orderFinish">
+   <span icon="pi pi-verified">Your order  created succfully</span>
+   <div>
+   <p-button  severity="warning" label="ok" [style]="{width:'106px'}" [text]="true" [raised]="true"  icon="pi pi-times" (onClick)="closeDaialog()" ></p-button>
+  </div>
+</div>
+</p-dialog>
+
+

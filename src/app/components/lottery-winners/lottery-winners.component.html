@@ -1,0 +1,20 @@
+<div class="lottery-winners-container">
+  <div class="lottery-winner" *ngFor="let winner of allLotterirs">
+    <div class="winner-info">
+      <h4>Winner:</h4>
+      <p>{{ winner.user.firstName }}</p>
+    </div>
+    <div class="gift-info">
+      <div class="gift-photo">
+        <img [src]='"assets/Images/"+winner.gift.giftImg' [alt]="winner.gift.giftName">
+      </div>
+      <div class="gift-details">
+        <h3>{{ winner.gift.giftName }}</h3>
+      </div>
+    </div>
+    <div class="lottery-info">
+      <h4>Lottery Date:</h4>
+      <p>{{ winner.lotteryDate | date }}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+.has-error{
+border-color: brown;
+}
+.Dialog{
+
+
+margin-top: 1px;
+font-size: larger;
+font-family: Arial, Helvetica, sans-serif;
+font-weight: 800;
+color: rgb(213, 44, 44);
+}
+.btn{
+color: rgb(213, 44, 44);
+font-weight: 800;
+border-color: transparent;
+}

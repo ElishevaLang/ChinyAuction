@@ -1,0 +1,29 @@
+  <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- <link rel="stylesheet" href="styles.css"> -->
+      <title>Chinese Sale - Gift Selection</title>
+    </head>
+    <body>
+      <p-toast></p-toast>
+      <h1 class="title">Chinese Sale - Gift Selection</h1>
+      <div class="my-css">
+        <div class="gift-grid">
+          <!-- Repeat the following gift-item divs for other gifts -->
+          <div class="gift-item" *ngFor="let gift of giftList">
+            <div class="gift-frame">
+              <img class="gift-image" [src]='"assets/Images/"+gift.giftImg' [alt]="gift.giftName" />
+              <div class="gift-details">
+                <h3>{{ gift.giftName }}</h3>
+                <p>{{ gift.ticketPrice | currency:'ILS' }}</p>
+                <button pButton [icon]="'pi pi-plus'" 
+                pRipple class="add-button" (click)="addCart(gift)">   Add  </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+    </html>

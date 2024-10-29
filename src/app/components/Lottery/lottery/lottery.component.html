@@ -1,0 +1,62 @@
+
+  <div class="container">
+    <h1 class="page-title">Gift List</h1>
+   
+  
+    <div class="gift-list">
+      <p-table [value]="giftList" [rows]="6" [paginator]="true" [(selection)]="selectedIndex" [rowHover]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+          <h5 class="table-caption">Gift List</h5>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="giftId">Gift ID</th>
+            <th pSortableColumn="giftName">Gift Name</th>
+            <th pSortableColumn="giftImg">Image</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-gift let-rowIndex="rowIndex">
+          <tr [class.selected]="selectedIndex === rowIndex" (click)="selectedIndex=rowIndex">
+            <td>{{gift.giftId}}</td>
+            <td>{{gift.giftName}}</td>
+            <td>
+              <img class="gift-image" [src]='"assets/Images/"+gift.giftImg' [alt]="gift.giftName" />
+            </td>
+            <td>
+              <button pButton pRipple class="delete-button"    (click)="random(gift)">Lottery</button>
+
+            </td>
+            <td>
+              <button pButton pRipple class="delete-button"    (click)="allLotteries()">Show All Lotteries</button>
+
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+          <div class="summary-text">
+            Total {{giftList ? giftList.length : 0}} items in the list.
+          </div>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+  <p-dialog   dir="ltr" [(visible)]="show" styleClass="p-fluid" [style]="{width: '550px'}" header="The Winner" [modal]="true" >
+    <div *ngIf="spinner">
+      <h3>Dear Custom!</h3>
+      <p-progressSpinner [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>   <span>The system is waiting for a winner...</span>
+    </div>
+    <div *ngIf="spinner2">
+        <h6 style="color: rgb(6, 5, 5) ;font-weight: 200;font-size: medium;font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif, 'Arial Narrow', Arial, sans-serif">  {{userWinner}}!! </h6>
+    <p-button  severity="warning" label="ok" [style]="{width:'106px'}" [text]="true" [raised]="true"  icon="pi pi-times" (onClick)="close()" ></p-button>
+    </div>
+    <div *ngIf="noWinner">
+        <h6 style="color: brown ;font-weight: 200;"> Worng </h6>
+    <p-button  severity="warning" label="ok" [style]="{width:'106px'}" [text]="true" [raised]="true"  icon="pi pi-times" (onClick)="close()" ></p-button>
+    </div>
+</p-dialog>
+
+  
+

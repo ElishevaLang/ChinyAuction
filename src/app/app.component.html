@@ -1,0 +1,28 @@
+<p-toolbar styleClass="mb-4" class="text-center">
+    <ng-template pTemplate="right">
+        <img  style="position: sticky;"  [src]='"assets/Images/סלוגג.jpg"' >
+    </ng-template>
+    <ng-template   pTemplate="center">
+        <div  class="d-flex justify-content-center ,margin-top:50px">
+            <div class="d-flex align-items-center">
+                <button class="btn" routerLink="menu" routerLinkActive="active-link"  style="color: black;">To Buy <i style="color: brown;"     class="pi pi-gift
+                    "></i></button>
+                <button class="btn" routerLink="login" routerLinkActive="active-link" style="color: black;">Sign In </button>
+                <button class="btn" routerLink="cart" routerLinkActive="active-link"  style="color: black;"><img class="icon" [src]='"assets/Images/cart.svg"'>({{count}})</button>
+                <button class="btn" routerLink="OrderGiftClient" routerLinkActive="active-link" style="color: black;"><img class="icon"  [src]='"assets/Images/Icon (8).svg"'>({{countOrderGift}})</button>
+                <div *ngIf="management">
+                <button class="btn"  routerLink="giftTable" routerLinkActive="active-link"  style="color: black;">Edit Gifts</button>
+                <button class="btn"  routerLink="don" routerLinkActive="active-link"  style="color: black;">Edit Donors</button>
+                <button class="btn" routerLink="orderGiftManagement" routerLinkActive="active-link" style="color: black;">Order Management</button>
+          
+                <button class="btn" routerLink="Lottery" routerLinkActive="active-link" style="color: black;"> <img [src]='"assets/Images/Icon (14).svg"'  class="icon" >   <img  [src]='"assets/Images/Icon (13).svg"' class="icon">Lottery</button>
+            </div>
+            <button *ngIf="!management" class="btn" routerLink="LotteryWinners" routerLinkActive="active-link" style="color: black;"> <img [src]='"assets/Images/Icon (14).svg"'  class="icon" >Winners</button>
+
+            </div>
+        </div>
+    </ng-template>
+</p-toolbar>
+<section ><p style="
+color: rgb(246, 241, 241);height: 6vh; font-size: 1.5vw;text-align: center;  font-weight: bold ;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;  background-color:rgb(14, 13, 13); ;">In {{ countdown }} the lottery will be held </p>
+<router-outlet></router-outlet>

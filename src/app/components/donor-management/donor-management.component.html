@@ -1,0 +1,54 @@
+<h1 class="page-title">List of Donors</h1>
+<p-toast></p-toast>
+<div class="container">
+<p-toolbar styleClass="mb-4">
+    <ng-template pTemplate="left">
+        <!-- <app-modal [openText]="'Edit'"> -->
+            <app-set-donor [donorList]="donorList" [(donor)]="donorList[selectedIndex]" [openText]="'Edit'"></app-set-donor>
+        <!-- </app-modal> -->
+    </ng-template>
+    
+    <ng-template pTemplate="right">
+        <button pButton pRipple label="Add" pButton pRipple icon="pi pi-plus" class="p-button-help" (click)="isNew=true">
+        </button>
+    </ng-template>
+</p-toolbar>
+
+<div class="my-css">
+    <p-table [value]="donorList" [rows]="6" [paginator]="true" [(selection)]="selectedIndex" [rowHover]="true"
+        dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [showCurrentPageReport]="true" [totalRecords]="6">
+        <ng-template pTemplate="caption">
+            <div class="flex align-items-center justify-content-between">
+                <h5 class="m-0">List of Donors:</h5>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="donorId">Code</th>
+                <th pSortableColumn="donorFullName">Donor Name </th>
+                <th pSortableColumn="donorPhonNum">Phone Number </th>
+                <th><---Click to sort by </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-donor let-rowIndex="rowIndex">
+            <tr [ngClass]="{'selected': selectedIndex === rowIndex}" (click)="selectedIndex=rowIndex">
+                <td>{{donor.donorId}}</td>
+                <td>{{donor.donorFullName}}</td>
+                <td>{{donor.donorPhonNum}}</td>
+                <td>
+                    <button pButton pRipple icon="pi pi-trash" class="delete-button" (click)="deleteDonor(donor)"></button>
+                  </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">
+                Total of {{donorList ? donorList.length : 0 }} in the list.
+            </div>
+        </ng-template>
+    </p-table>
+    <div *ngIf="isNew">
+        <app-set-donor [isDialog]="true" [donorList]="donorList" [isNew]="true" (addDonor)="addDonor($event)"></app-set-donor>
+    </div>
+</div>
+</div>

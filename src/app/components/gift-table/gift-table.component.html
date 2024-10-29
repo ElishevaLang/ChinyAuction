@@ -1,0 +1,59 @@
+<div class="container">
+    <h1 class="page-title">Gift List</h1>
+    <p-toolbar class="toolbar" >
+      <ng-template pTemplate="left">
+        <!-- <app-modal [openText]="'Edit'"> -->
+          <app-set-gift [giftList]="giftList" [(gift)]="giftList[selectedIndex]" [openText]="'Edit'" ></app-set-gift>
+        <!-- </app-modal> -->
+      </ng-template>
+      <ng-template pTemplate="right">
+        <button style="background-color: brown;" pButton pRipple label="Add" icon="pi pi-plus" class="add-button" (click)="isNew=true"></button>
+      </ng-template>
+    </p-toolbar>
+    <p-toast></p-toast>
+  
+    <div class="gift-list">
+      <p-table [value]="giftList" [rows]="6" [paginator]="true" [(selection)]="selectedIndex" [rowHover]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+          <h5 class="table-caption">Gift List</h5>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="giftId">Gift ID</th>
+            <th pSortableColumn="giftName">Gift Name</th>
+            <th pSortableColumn="donorId">Donor ID</th>
+            <th pSortableColumn="ticketPrice">Price</th>
+            <th pSortableColumn="giftImg">Image</th>
+            <th><---Click to sort by </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-gift let-rowIndex="rowIndex">
+          <tr [class.selected]="selectedIndex === rowIndex" (click)="selectedIndex=rowIndex">
+            <td>{{gift.giftId}}</td>
+            <td>{{gift.giftName}}</td>
+            <td>{{gift.donorId}}</td>
+            <td>{{gift.ticketPrice}}</td>
+            <td>
+              <img class="gift-image" [src]='"assets/Images/"+gift.giftImg'
+              [alt]="gift.giftImg" />
+            </td>
+            <td>
+              <button pButton pRipple icon="pi pi-trash" class="delete-button" (click)="deleteGift(gift)"></button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+          <div class="summary-text">
+            Total {{giftList ? giftList.length : 0}} items in the list.
+          </div>
+        </ng-template>
+      </p-table>
+  
+      <div class="add-gift" *ngIf="isNew">
+        
+        <app-set-gift [isDialog]="true" [giftList]="giftList" [isNew]="true" (addGift)="addGift($event)"></app-set-gift>
+      </div>
+    </div>
+  </div>
+  

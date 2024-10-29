@@ -1,0 +1,55 @@
+<button *ngIf="openText=='Edit'" (click)="isDialog=true" pButton pRipple label={{openText}} icon="pi pi-user-edit"class="p-button-help" id="myBtn"></button>
+
+<p-dialog  *ngIf="isDialog" dir="ltr" [(visible)]="isDialog"  styleClass="p-fluid" [style]="{width: '800px'}"[modal]="true"  >
+
+<header class="Dialog" *ngIf="openText=='Edit'">Edit Gift</header>
+<header class="Dialog" *ngIf="openText==''">Add Gift</header>
+<p-toast></p-toast>
+<form [formGroup]="frmGift">
+    <p class="bold">All fields are required</p>
+<div class="form-group row">
+    <div class="control-label col col-3"><label>Name:</label></div>
+    <div class="control-label col col-4">
+        <input type="text" class="form-control" formControlName="giftName" [(ngModel)]="gift.giftName"
+            [ngClass]="{'has-error':!frmGift.controls['giftName'].valid && frmGift.controls['giftName'].touched}" />
+    </div>
+</div>
+<div class="form-group row">
+    <div class="control-label col col-3"><label>DonorId:</label></div>
+    <div class="control-label col col-4">
+    <select  type="text" class="form-control" formControlName="donorId"  id="donorId" [(ngModel)]="gift.donorId" [ngClass]="{'has-error':!frmGift.controls['donorId'].valid && frmGift.controls['donorId'].touched} ">
+                <option  *ngFor="let x of donorList">{{x.donorId}}</option>
+             </select>
+    </div>  
+
+    
+</div>
+<div class="form-group row">
+    <div class="control-label col col-3"><label>Price:</label></div>
+    <div class="control-label col col-4">
+        <input type="text" class="form-control" formControlName="ticketPrice" [(ngModel)]="gift.ticketPrice"
+            [ngClass]="{'has-error':!frmGift.controls['ticketPrice'].valid && frmGift.controls['ticketPrice'].touched}" />
+    </div>
+</div>
+<!-- <div class="form-group row">
+    <div class="control-label col col-3"><label>Image:</label></div>
+    <div class="control-label col col-4">
+        <input type="text" class="form-control" formControlName="giftImg" [(ngModel)]="gift.giftImg"
+            [ngClass]="{'has-error':!frmGift.controls['giftImg'].valid && frmGift.controls['giftImg'].touched}" />
+    </div>
+</div> -->
+<div class="form-group row">
+    <div class="control-label col col-3"><label>Image:</label></div>
+    <div class="control-label col col-4">
+        <input type="file" (change)="handleFileInput($event)"  class="form-control" formControlName="giftImg"  [ngClass]="{'has-error':!frmGift.controls['giftImg'].valid && frmGift.controls['giftImg'].touched}">
+        <!-- <button (click)="saveGift()">Save</button> -->
+
+        
+
+    </div>
+</div>
+<button  class="btn"(click)="saveandclose()" [disabled]="frmGift.invalid">Save</button>
+<button class="btn" (click)="undoandclose()" >Cancel</button>
+
+</form>
+</p-dialog>

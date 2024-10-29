@@ -1,0 +1,44 @@
+<h1 class="page-title">Sign In</h1>
+<p-toolbar>
+  <ng-template  pTemplate="left">
+<p-button class="center" label="Register" severity="danger"[text]="true" [raised]="false"  icon="pi pi-user"(onClick)="register() "></p-button>
+
+</ng-template>
+</p-toolbar>
+<div class="my-css"><form [formGroup]="frmUserLogin">
+  <p class="bold">All fields are required</p>
+<div class="form-group row">
+  <div class="control-label col col-4">
+    <span class="p-input-icon-right">
+      <i class="pi pi-envelope"></i>
+
+      <input  p-inputtext type="text" class="form-control" formControlName="emailLogin" [(ngModel)]="emailLoginn" placeholder="Email"
+          [ngClass]="{'has-error':!frmUserLogin.controls['emailLogin'].valid && frmUserLogin.controls['emailLogin'].touched}" />
+          <div id="valid" *ngIf="frmUserLogin.controls['emailLogin'].invalid&& frmUserLogin.controls['emailLogin'].touched">Invalid Mail format (aaa@gmail.com).</div>
+    </span>
+  </div>
+  <br>
+  <br>
+</div>
+<br>
+
+<div class="form-group row">
+  <div class="control-label col col-4">
+    <p-password p-inputtext id="form-control" formControlName="passwordLogin" [(ngModel)]="passwordLoginn" placeholder="Password"
+    [ngClass]="{'has-error':!frmUserLogin.controls['passwordLogin'].valid && frmUserLogin.controls['passwordLogin'].touched}"  [feedback]="true" [toggleMask]="true"></p-password>
+    <div id="valid" *ngIf="frmUserLogin.controls['passwordLogin'].invalid&& frmUserLogin.controls['passwordLogin'].touched">Password must contain at least two uppercase and two lowercase letters and numbers.</div>
+        
+
+  </div>
+</div>
+
+<br>
+<p-button class="center"[disabled]="frmUserLogin.invalid" severity="danger" label="Sign In" [text]="true" [raised]="false"  icon="pi pi-user" (click)="login()"></p-button>
+
+
+
+
+</form>
+</div>
+
+

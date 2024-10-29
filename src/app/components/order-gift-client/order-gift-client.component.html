@@ -1,0 +1,17 @@
+<div class="container">
+    <h2 class="page-title">Your Orders</h2>
+    <div class="cart-items">
+      <div *ngFor="let item of orderGiftListQ" class="cart-item">
+        <div class="item-image">
+          <img [src]='"assets/Images/"+item.gift.giftImg' alt="Gift Image" />
+        </div>
+        <div class="item-details">
+          <h3 class="item-name">{{ item.gift.giftName }}</h3>
+          <p class="item-price">Price: ₪{{ item.gift.ticketPrice }}</p>
+          <p class="item-price">Quantity:{{ item.quantity }}</p>
+          <p class="item-date">Ordered on: {{ item.orderGiftDate | date }}</p>
+
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,37 @@
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .selected{
+    background-color: rgb(209, 223, 216);
+}
+  .page-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+  
+  .toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .add-button {
+    margin-left: 20px;
+  }
+  
+  .table-caption {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .gift-image {
+    width: 100px;
+    height: auto;
+    border-radius: 5px;
+  }
+  
